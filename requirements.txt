@@ -1,0 +1,20 @@
+# --- Core API & Server ---
+fastapi
+uvicorn[standard]
+
+# --- Data Processing ---
+pandas
+numpy
+scipy
+pyarrow
+
+# --- Machine Learning ---
+implicit
+xgboost
+scikit-learn
+joblib
+
+# --- MLOps & Tracking ---
+mlflow
+protobuf<5.0.0
+setuptools<70.0.0
