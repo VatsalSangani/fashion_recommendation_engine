@@ -1,11 +1,12 @@
-# Create .gitignore first
 @"
 data/
-processed/
 models/
 __pycache__/
 .venv/
 *.pyc
 mlflow.db
 mlruns/
+processed/txn_train.parquet
+processed/txn_val.parquet
+processed/idx2cust.json
 "@ | Out-File -Encoding utf8 .gitignore
