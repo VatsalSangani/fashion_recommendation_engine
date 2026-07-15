@@ -1,0 +1,20 @@
+[project]
+name = "hm-recsys"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "implicit>=0.7.2",
+    "joblib>=1.4",
+    "mlflow>=3.1",
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "protobuf>=4.25,<6",
+    "pyarrow>=18",
+    "scikit-learn>=1.6",
+    "scipy>=1.13",
+    "uvicorn[standard]>=0.35",
+    "xgboost>=3.0",
+]
