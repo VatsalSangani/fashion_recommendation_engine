@@ -1,36 +1,23 @@
-name: Deploy Fashion RecSys to GCP Cloud Run
+FROM python:3.12-slim
 
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libgomp1 \
+    curl \
+    gnupg \
+    && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
+    && echo "deb https://packages.cloud.google.com/apt cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list \
+    && apt-get update && apt-get install -y google-cloud-cli \
+    && rm -rf /var/lib/apt/lists/*
 
-jobs:
-  deploy:
-    name: Deploy to GCP Cloud Run
-    runs-on: ubuntu-latest
+WORKDIR /app
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-      - name: Authenticate to GCP
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+COPY app.py index.html ./
 
-      - name: Deploy to Cloud Run
-        uses: google-github-actions/deploy-cloudrun@v2
-        with:
-          service: fashion-recsys
-          region: europe-west2
-          source: .
-          flags: >
-            --port 8000
-            --memory 2Gi
-            --cpu 1
-            --min-instances 0
-            --max-instances 1
-            --timeout 600
-            --clear-base-image
-            --allow-unauthenticated
+# Download deploy_data from GCS at build time
+RUN gsutil -m cp -r gs://fashion-recsys-deploy-data/ deploy_data/
+
+ENV PORT=8000
+CMD uvicorn app:app --host 0.0.0.0 --port $PORT
