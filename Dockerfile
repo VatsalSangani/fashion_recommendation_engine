@@ -19,7 +19,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app.py index.html ./
 
-RUN gsutil -m cp -r gs://fashion-recsys-deploy-data/ deploy_data/
+RUN mkdir -p deploy_data && gsutil -m cp -r gs://fashion-recsys-deploy-data/* deploy_data/
 
 ENV PORT=8000
 CMD uvicorn app:app --host 0.0.0.0 --port `$PORT
+
