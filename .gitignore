@@ -1,12 +1,36 @@
 @"
+# Raw data
 data/
+
+# Models (too large)
 models/
-__pycache__/
-.venv/
-*.pyc
-mlflow.db
-mlruns/
+
+# Processed transaction data (too large)
 processed/txn_train.parquet
 processed/txn_val.parquet
 processed/idx2cust.json
+
+# Deploy data (too large for git)
+deploy_data/
+fashion-recsys-deploy/deploy_data/
+
+# Terraform
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+main.tf
+
+# Python
+__pycache__/
+.venv/
+*.pyc
+
+# MLflow
+mlflow.db
+mlruns/
+
+# Misc
+get_reqs.py
+main.py
 "@ | Out-File -Encoding utf8 .gitignore

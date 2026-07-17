@@ -1,0 +1,8 @@
+fastapi==0.139.0
+uvicorn[standard]==0.51.0
+numpy==2.5.1
+scipy==1.18.0
+pandas==2.3.3
+implicit==0.7.3
+xgboost==3.3.0
+pyarrow==24.0.0
