@@ -13,15 +13,16 @@ Built as a portfolio project targeting ML Engineer roles in Search & Recommendat
 > First load takes ~2 minutes (cold start — 500MB of models loading into memory)
 
 **Test customer ID:**
-```
-0001b0127d3e5ff8dadcfc6e5043682dba2070f2667081623faeb31c996242a6
-```
+Browse the sample files included in the repo:
+- `processed/valid_customers.csv` — 525,075 valid customer IDs
 
 **Test article ID (Similar Items tab):**
-```
-0739590032
-```
+Same for articles ID browse the repo
+- `processed/valid_articles.csv` — 42,298 valid article IDs with product names, colours and departments
 
+Pick any row and paste the ID directly into the demo.
+
+> **Note on customer IDs:** Customer IDs in the H&M dataset are SHA-256 hashed strings (64 hex characters) rather than plain integers — for example `0001b0127d3e5ff8dadcfc6e5043682dba2070f2667081623faeb31c996242a6`. This is standard practice in retail datasets to anonymise personally identifiable information (PII) before public release. The model treats them as opaque keys — the hash value itself carries no meaning, it simply maps each customer to their purchase history in the interaction matrix.
 ---
 
 ## Architecture
