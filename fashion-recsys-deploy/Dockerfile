@@ -1,4 +1,3 @@
-@"
 FROM python:3.12-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -24,8 +23,4 @@ RUN mkdir -p deploy_data && gsutil -m cp -r gs://fashion-recsys-deploy-data/* de
 
 ENV PORT=8000
 CMD uvicorn app:app --host 0.0.0.0 --port `$PORT
-"@ | Set-Content -Path Dockerfile -Encoding utf8
 
-git add Dockerfile
-git commit -m "Fix gsutil path - create deploy_data dir before download"
-git push
